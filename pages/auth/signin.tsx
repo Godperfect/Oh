@@ -24,7 +24,7 @@ const SignIn: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.authCard}>
+        <div className={styles.authForm}>
           <h1 className={styles.title}>Welcome Back</h1>
           <p className={styles.subtitle}>Sign in to your account</p>
 

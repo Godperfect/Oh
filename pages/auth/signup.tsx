@@ -26,7 +26,7 @@ const SignUp: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.authCard}>
+        <div className={styles.authForm}>
           <h1 className={styles.title}>Create Account</h1>
           <p className={styles.subtitle}>Sign up to get started</p>
 
