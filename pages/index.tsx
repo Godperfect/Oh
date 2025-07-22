@@ -216,24 +216,14 @@ const Home: NextPage = () => {
               </svg>
             </Link>
 
-            <button 
-              onClick={() => setIsPlaying(!isPlaying)}
-              className={styles.playBtn}
-            >
+            <Link href="/auth/signup" className={styles.playBtn}>
               <div className={styles.playIcon}>
-                {isPlaying ? (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
-                    <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
-                  </svg>
-                ) : (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
-                  </svg>
-                )}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                </svg>
               </div>
-              <span>{isPlaying ? 'Pause' : 'Play'} Demo</span>
-            </button>
+              <span>Listen Now</span>
+            </Link>
           </div>
 
           {/* Audio Visualizer - Responsive */}
