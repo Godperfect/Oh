@@ -65,7 +65,7 @@ const SignIn: NextPage = () => {
                 <span className={styles.checkmark}></span>
                 Remember me
               </label>
-              <Link href="/auth/forgot-password" className={styles.link}>
+              <Link href="/auth/forgot-password" className={styles.forgotPassword}>
                 Forgot password?
               </Link>
             </div>
