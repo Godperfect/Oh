@@ -649,10 +649,107 @@
 }
 
 .switchAuth {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
-  margin: 1rem 0 0 0;
-  font-size: 1rem;
+}
+
+/* Picture Upload Styles */
+.pictureGroup {
+  margin-bottom: 2rem;
+}
+
+.coverPicturePreview {
+  width: 100%;
+  height: 160px;
+  border: 2px dashed rgba(120, 119, 198, 0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.coverPicturePreview:hover {
+  border-color: rgba(120, 119, 198, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.coverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coverPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.coverPlaceholder span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.profilePictureContainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.profilePicturePreview {
+  width: 120px;
+  height: 120px;
+  border: 4px solid rgba(120, 119, 198, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+}
+
+.profilePicturePreview:hover {
+  border-color: rgba(120, 119, 198, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.02);
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profilePlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.profilePlaceholder span {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.hiddenInput {
+  display: none;
 }
 
 /* Responsive Design */
@@ -660,11 +757,11 @@
   .container {
     padding: 1.5rem;
   }
-  
+
   .main {
     max-width: 520px;
   }
-  
+
   .authForm {
     padding: 2rem 0;
   }
@@ -676,52 +773,52 @@
     align-items: flex-start;
     padding-top: 1.5rem;
   }
-  
+
   .main {
     max-width: 100%;
     width: 100%;
   }
-  
+
   .authForm {
     padding: 1.5rem 0;
   }
-  
+
   .title {
     font-size: 2.4rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
     margin-bottom: 2rem;
   }
-  
+
   .stepContent {
     min-height: 280px;
   }
-  
+
   .stepTitle {
     font-size: 1.3rem;
   }
-  
+
   .stepDescription {
     font-size: 0.9rem;
   }
-  
+
   .input {
     padding: 1.1rem 0.5rem;
     font-size: 0.95rem;
   }
-  
+
   .navigationButtons {
     gap: 0.75rem;
     margin: 1.5rem 0 1rem 0;
   }
-  
+
   .prevBtn, .nextBtn, .submitBtn {
     padding: 1.1rem 1.5rem;
     font-size: 0.95rem;
   }
-  
+
   .musicStickers svg {
     opacity: 0.8;
   }
@@ -741,13 +838,13 @@
     font-size: 2rem;
     line-height: 1.2;
   }
-  
+
   .subtitle {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
     line-height: 1.4;
   }
-  
+
   .aiIndicator {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
@@ -779,28 +876,28 @@
   .profilePlaceholder span {
     font-size: 0.7rem;
   }
-  
+
   .stepTitle {
     font-size: 1.2rem;
   }
-  
+
   .stepDescription {
     font-size: 0.85rem;
   }
-  
+
   .stepHeader {
     margin-bottom: 1.5rem;
   }
-  
+
   .inputGroup {
     margin-bottom: 1.25rem;
   }
-  
+
   .input {
     padding: 1rem 0.4rem;
     font-size: 0.9rem;
   }
-  
+
   .label {
     font-size: 0.8rem;
   }
@@ -810,64 +907,64 @@
     gap: 0.75rem;
     margin: 1.25rem 0 0.75rem 0;
   }
-  
+
   .prevBtn, .nextBtn, .submitBtn {
     padding: 1rem 1.25rem;
     font-size: 0.9rem;
   }
-  
+
   .progressBar {
     margin-bottom: 2rem;
   }
-  
+
   .stepIndicator {
     width: 28px;
     height: 28px;
     font-size: 0.8rem;
   }
-  
+
   .checkbox {
     font-size: 0.8rem;
     line-height: 1.4;
   }
-  
+
   .summaryCard {
     padding: 1.25rem;
     margin: 1.25rem 0;
   }
-  
+
   .summaryCard h3 {
     font-size: 1rem;
   }
-  
+
   .summaryCard p {
     font-size: 0.8rem;
   }
-  
+
   .switchAuth {
     font-size: 0.9rem;
     margin-top: 1rem;
   }
-  
+
   .musicStickers svg {
     opacity: 0.6;
   }
-  
+
   .musicNote1, .musicNote2 {
     width: 18px;
     height: 18px;
   }
-  
+
   .vinylRecord {
     width: 24px;
     height: 24px;
   }
-  
+
   .headphones {
     width: 22px;
     height: 22px;
   }
-  
+
   .waveform, .speaker {
     width: 20px;
     height: 20px;
@@ -879,39 +976,39 @@
     padding: 0.5rem;
     padding-top: 0.75rem;
   }
-  
+
   .title {
     font-size: 1.7rem;
   }
-  
+
   .subtitle {
     font-size: 0.9rem;
   }
-  
+
   .stepContent {
     min-height: 200px;
   }
-  
+
   .stepTitle {
     font-size: 1.1rem;
   }
-  
+
   .input {
     padding: 0.9rem 0.3rem;
     font-size: 0.85rem;
   }
-  
+
   .prevBtn, .nextBtn, .submitBtn {
     padding: 0.9rem 1rem;
     font-size: 0.85rem;
   }
-  
+
   .stepIndicator {
     width: 24px;
     height: 24px;
     font-size: 0.75rem;
   }
-  
+
   .musicStickers svg {
     display: none;
   }
@@ -923,19 +1020,19 @@
     padding: 1rem 2rem;
     align-items: center;
   }
-  
+
   .main {
     max-width: 500px;
   }
-  
+
   .authForm {
     padding: 1.5rem 0;
   }
-  
+
   .stepContent {
     min-height: 250px;
   }
-  
+
   .title {
     font-size: 2.2rem;
   }
@@ -946,11 +1043,11 @@
   .container {
     padding: 3rem;
   }
-  
+
   .main {
     max-width: 550px;
   }
-  
+
   .authForm {
     padding: 3rem 0;
   }
