@@ -72,12 +72,20 @@ const SignIn: NextPage = () => {
               </Link>
             </div>
 
-            <button type="submit" className={styles.submitBtn}>
-              Sign In
-            </button>
+            <div className={styles.buttonGroup}>
+              <button type="submit" className={styles.submitBtn}>
+                Sign In
+              </button>
+              
+              <div className={styles.divider}>
+                <span>or</span>
+              </div>
+              
+              <Link href="/auth/signup" className={styles.createAccountBtn}>
+                Create Account
+              </Link>
+            </div>
           </form>
-
-          
 
           <p className={styles.switchAuth}>
             New to FrankFreq?{" "}
