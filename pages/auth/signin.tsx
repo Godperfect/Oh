@@ -18,15 +18,15 @@ const SignIn: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Sign In - Your App</title>
-        <meta name="description" content="Sign in to your account" />
+        <title>Sign In - FrankFreq</title>
+        <meta name="description" content="Sign in to FrankFreq - Your Music Platform" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <div className={styles.authForm}>
-          <h1 className={styles.title}>Welcome Back</h1>
-          <p className={styles.subtitle}>Sign in to your account</p>
+          <h1 className={styles.title}>Welcome Back to FrankFreq</h1>
+          <p className={styles.subtitle}>Continue your music journey</p>
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.inputGroup}>
@@ -84,9 +84,9 @@ const SignIn: NextPage = () => {
           </button>
 
           <p className={styles.switchAuth}>
-            Don&apos;t have an account?{" "}
+            New to FrankFreq?{" "}
             <Link href="/auth/signup" className={styles.link}>
-              Sign up
+              Join the community
             </Link>
           </p>
         </div>

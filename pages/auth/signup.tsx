@@ -265,8 +265,8 @@ const SignUp: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Account - Your App</title>
-        <meta name="description" content="Create your account with AI-powered onboarding" />
+        <title>Join FrankFreq - Music Platform</title>
+        <meta name="description" content="Join FrankFreq - Listen, Download, Discover Music" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -275,10 +275,10 @@ const SignUp: NextPage = () => {
           <div className={styles.aiHeader}>
             <div className={styles.aiIndicator}>
               <div className={styles.aiPulse}></div>
-              <span>AI-Powered</span>
+              <span>Music-Powered Platform</span>
             </div>
-            <h1 className={styles.title}>Create Account</h1>
-            <p className={styles.subtitle}>Join the future of digital experiences</p>
+            <h1 className={styles.title}>Join FrankFreq</h1>
+            <p className={styles.subtitle}>Your gateway to music discovery, downloads & global music community</p>
           </div>
 
           <div className={styles.progressBar}>
@@ -320,6 +320,18 @@ const SignUp: NextPage = () => {
               
               <svg className={styles.headphones} width="28" height="28" viewBox="0 0 24 24" fill="none">
                 <path d="M12 1C7.03 1 3 5.03 3 10V15C3 16.1 3.9 17 5 17H6C7.1 17 8 16.1 8 15V11C8 9.9 7.1 9 6 9H5V10C5 6.13 8.13 3 12 3S19 6.13 19 10V9H18C16.9 9 16 9.9 16 11V15C16 16.1 16.9 17 18 17H19C20.1 17 21 16.1 21 15V10C21 5.03 16.97 1 12 1Z" fill="rgba(168, 85, 247, 0.4)"/>
+              </svg>
+              
+              <svg className={styles.waveform} width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="8" width="2" height="8" fill="rgba(120, 119, 198, 0.7)"/>
+                <rect x="6" y="6" width="2" height="12" fill="rgba(168, 85, 247, 0.6)"/>
+                <rect x="10" y="4" width="2" height="16" fill="rgba(255, 255, 255, 0.5)"/>
+                <rect x="14" y="7" width="2" height="10" fill="rgba(120, 119, 198, 0.7)"/>
+                <rect x="18" y="5" width="2" height="14" fill="rgba(168, 85, 247, 0.6)"/>
+              </svg>
+              
+              <svg className={styles.speaker} width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.72 18.01 4.14 14 3.23ZM16.5 12C16.5 10.23 15.5 8.71 14 7.97V16.03C15.5 15.29 16.5 13.77 16.5 12ZM3 9V15H7L12 20V4L7 9H3Z" fill="rgba(255, 255, 255, 0.6)"/>
               </svg>
             </div>
             {renderStep()}
@@ -388,7 +400,7 @@ const SignUp: NextPage = () => {
           </button>
 
           <p className={styles.switchAuth}>
-            Already have an account?{" "}
+            Already part of FrankFreq?{" "}
             <Link href="/auth/signin" className={styles.link}>
               Sign in
             </Link>
