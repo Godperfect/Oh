@@ -30,6 +30,13 @@ const ScrollProgress = () => {
   );
 };
 
+
+import type { NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import styles from "../styles/Home.module.css";
+
 const Home: NextPage = () => {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
