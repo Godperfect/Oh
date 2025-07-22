@@ -24,6 +24,17 @@ const SignUp: NextPage = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
+
+    // For OTP field, only allow numeric characters
+    if (name === 'otp') {
+      const numericValue = value.replace(/[^0-9]/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: numericValue
+      }));
+      return;
+    }
+
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
@@ -222,7 +233,9 @@ const SignUp: NextPage = () => {
                 Verification Code
               </label>
               <input
-                type="text"
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 id="otp"
                 name="otp"
                 value={formData.otp}
