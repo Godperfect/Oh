@@ -5,314 +5,339 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
-// Music Platform Components
-const StreamingCard = ({ platform, isConnected }: { platform: string; isConnected: boolean }) => {
-  const platformIcons = {
-    spotify: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="12" fill="#1DB954"/>
-        <path d="M17 10.5c-4.8-2.4-12.8-2.6-17.4-1.4v-0.8c5.2-1.3 13.8-1 19 1.6L17 10.5z M16.8 13.8c-4.2-2.1-10.8-2.3-14.2-1.2v-0.7c3.8-1.1 10.6-0.9 15 1.4L16.8 13.8z M16.6 16.7c-3.4-1.7-8.6-1.9-11.4-1v-0.6c3.2-0.9 8.4-0.7 12 1.2L16.6 16.7z" fill="white"/>
+// Premium Music Sticker Component
+const MusicSticker = ({ type, className }: { type: string; className: string }) => {
+  const stickers = {
+    vinyl: (
+      <svg className={className} width="64" height="64" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" fill="url(#vinylGradient)" stroke="url(#vinylStroke)" strokeWidth="0.5"/>
+        <circle cx="12" cy="12" r="8" fill="rgba(0,0,0,0.3)" opacity="0.8"/>
+        <circle cx="12" cy="12" r="5" fill="rgba(0,0,0,0.5)" opacity="0.6"/>
+        <circle cx="12" cy="12" r="2" fill="url(#centerGradient)"/>
+        <defs>
+          <linearGradient id="vinylGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="rgba(120, 119, 198, 0.4)" />
+            <stop offset="50%" stopColor="rgba(168, 85, 247, 0.3)" />
+            <stop offset="100%" stopColor="rgba(6, 182, 212, 0.2)" />
+          </linearGradient>
+          <linearGradient id="vinylStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#7877c6" />
+            <stop offset="100%" stopColor="#a855f7" />
+          </linearGradient>
+          <radialGradient id="centerGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="100%" stopColor="#7877c6" />
+          </radialGradient>
+        </defs>
       </svg>
     ),
-    apple: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="12" fill="#000000"/>
-        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="white"/>
+    note1: (
+      <svg className={className} width="40" height="40" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3V13.55C11.41 13.21 10.73 13 10 13C7.79 13 6 14.79 6 17S7.79 21 10 21 14 19.21 14 17V7H18V3H12Z" fill="url(#note1Gradient)"/>
+        <defs>
+          <linearGradient id="note1Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#7877c6" />
+            <stop offset="50%" stopColor="#a855f7" />
+            <stop offset="100%" stopColor="#06b6d4" />
+          </linearGradient>
+        </defs>
       </svg>
     ),
-    youtube: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="12" fill="#FF0000"/>
-        <path d="M10 15l5.19-3L10 9v6z" fill="white"/>
+    waveform: (
+      <svg className={className} width="56" height="56" viewBox="0 0 32 32" fill="none">
+        <rect x="2" y="12" width="2" height="8" fill="url(#waveGradient)" rx="1"/>
+        <rect x="6" y="10" width="2" height="12" fill="url(#waveGradient)" rx="1"/>
+        <rect x="10" y="6" width="2" height="20" fill="url(#waveGradient)" rx="1"/>
+        <rect x="14" y="8" width="2" height="16" fill="url(#waveGradient)" rx="1"/>
+        <rect x="18" y="4" width="2" height="24" fill="url(#waveGradient)" rx="1"/>
+        <rect x="22" y="9" width="2" height="14" fill="url(#waveGradient)" rx="1"/>
+        <rect x="26" y="11" width="2" height="10" fill="url(#waveGradient)" rx="1"/>
+        <defs>
+          <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#7877c6" />
+            <stop offset="30%" stopColor="#a855f7" />
+            <stop offset="70%" stopColor="#06b6d4" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+        </defs>
       </svg>
     ),
-    soundcloud: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="12" fill="#FF5500"/>
-        <path d="M8.5 12.5h1v4h-1zm2-1h1v5h-1zm2-2h1v7h-1zm2 1h1v6h-1zm2-3h1v9h-1z" fill="white"/>
+    headphones: (
+      <svg className={className} width="48" height="48" viewBox="0 0 24 24" fill="none">
+        <path d="M12 1C7.03 1 3 5.03 3 10V15C3 16.1 3.9 17 5 17H6C7.1 17 8 16.1 8 15V11C8 9.9 7.1 9 6 9H5V10C5 6.13 8.13 3 12 3S19 6.13 19 10V9H18C16.9 9 16 9.9 16 11V15C16 16.1 16.9 17 18 17H19C20.1 17 21 16.1 21 15V10C21 5.03 16.97 1 12 1Z" fill="url(#headphoneGradient)"/>
+        <defs>
+          <linearGradient id="headphoneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="50%" stopColor="#a855f7" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+        </defs>
       </svg>
     )
   };
 
-  return (
-    <div className={styles.streamingCard}>
-      <div className={styles.platformIcon}>
-        {platformIcons[platform as keyof typeof platformIcons]}
-      </div>
-      <div className={styles.platformInfo}>
-        <h3>{platform.charAt(0).toUpperCase() + platform.slice(1)}</h3>
-        <span className={`${styles.connectionStatus} ${isConnected ? styles.connected : styles.disconnected}`}>
-          {isConnected ? 'Connected' : 'Connect'}
-        </span>
-      </div>
-      <button className={`${styles.connectBtn} ${isConnected ? styles.connected : ''}`}>
-        {isConnected ? '✓' : '+'}
-      </button>
-    </div>
-  );
-};
-
-const MusicPlayer = ({ track }: { track: any }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration] = useState(180); // 3 minutes default
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isPlaying) {
-      interval = setInterval(() => {
-        setCurrentTime(prev => prev < duration ? prev + 1 : prev);
-      }, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [isPlaying, duration]);
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  return (
-    <div className={styles.musicPlayer}>
-      <div className={styles.trackInfo}>
-        <div className={styles.albumArt}>
-          <div className={styles.albumPlaceholder}>♪</div>
-        </div>
-        <div className={styles.trackDetails}>
-          <h4>{track.title}</h4>
-          <p>{track.artist}</p>
-        </div>
-      </div>
-      
-      <div className={styles.playerControls}>
-        <button className={styles.controlBtn}>⏮</button>
-        <button 
-          className={styles.playPauseBtn}
-          onClick={() => setIsPlaying(!isPlaying)}
-        >
-          {isPlaying ? '⏸' : '▶'}
-        </button>
-        <button className={styles.controlBtn}>⏭</button>
-      </div>
-
-      <div className={styles.progressSection}>
-        <span className={styles.timeDisplay}>{formatTime(currentTime)}</span>
-        <div className={styles.progressBar}>
-          <div 
-            className={styles.progress}
-            style={{ width: `${(currentTime / duration) * 100}%` }}
-          />
-        </div>
-        <span className={styles.timeDisplay}>{formatTime(duration)}</span>
-      </div>
-
-      <div className={styles.playerActions}>
-        <button className={styles.actionBtn} title="Download">⬇</button>
-        <button className={styles.actionBtn} title="Add to Playlist">+</button>
-        <button className={styles.actionBtn} title="Share">↗</button>
-      </div>
-    </div>
-  );
+  return stickers[type as keyof typeof stickers] || null;
 };
 
 const Home: NextPage = () => {
-  const [activeTab, setActiveTab] = useState('discover');
-  const [currentTrack, setCurrentTrack] = useState({
-    title: "Midnight Vibes",
-    artist: "DJ FrankFreq",
-    album: "Electronic Dreams",
-    duration: 180
-  });
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [currentTrack, setCurrentTrack] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const platforms = [
-    { name: 'spotify', connected: true },
-    { name: 'apple', connected: false },
-    { name: 'youtube', connected: true },
-    { name: 'soundcloud', connected: false }
-  ];
+  const featuredTracks = ["Synthwave Dreams", "Lo-fi Nights", "Ambient Flow", "Electronic Pulse"];
 
-  const featuredTracks = [
-    { title: "Synthwave Dreams", artist: "NeonBeats", genre: "Electronic", downloads: "2.3K" },
-    { title: "Lo-fi Nights", artist: "ChillMaster", genre: "Lo-fi", downloads: "5.7K" },
-    { title: "Ambient Flow", artist: "SoundWaves", genre: "Ambient", downloads: "1.9K" },
-    { title: "Bass Drop", artist: "ElectroBeat", genre: "EDM", downloads: "8.2K" }
-  ];
+  useEffect(() => {
+    setMounted(true);
+
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+
+    const trackInterval = setInterval(() => {
+      setCurrentTrack((prev) => (prev + 1) % featuredTracks.length);
+    }, 3000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearInterval(trackInterval);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>FrankFreq - Stream, Download & Discover Music</title>
-        <meta name="description" content="Ultimate music platform - Stream from multiple sources, download high-quality tracks, chat with global community" />
+        <title>FrankFreq - Premium Music Experience</title>
+        <meta name="description" content="Create, discover, and share music like never before with AI-powered tools" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Navigation Header */}
-      <header className={styles.header}>
-        <div className={styles.headerContainer}>
-          <div className={styles.logo}>
-            <div className={styles.logoIcon}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#logoGradient)"/>
+      {/* Mobile-First Navigation */}
+      <nav className={styles.navigation}>
+        <div className={styles.navBrand}>
+          <div className={styles.brandIcon}>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#logoGradient)"/>
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#7877c6" />
+                  <stop offset="100%" stopColor="#a855f7" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span className={styles.brandText}>FrankFreq</span>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className={styles.mobileMenuToggle}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Desktop Menu */}
+        <div className={styles.navMenu}>
+          <Link href="/discover" className={styles.navItem}>Discover</Link>
+          <Link href="/create" className={styles.navItem}>Create</Link>
+          <Link href="/community" className={styles.navItem}>Community</Link>
+        </div>
+
+        <div className={styles.navActions}>
+          <Link href="/auth/signin" className={styles.navSignIn}>Sign In</Link>
+          <Link href="/auth/signup" className={styles.navSignUp}>Get Started</Link>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          <Link href="/discover" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Discover</Link>
+          <Link href="/create" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Create</Link>
+          <Link href="/community" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Community</Link>
+          <Link href="/auth/signin" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
+          <Link href="/auth/signup" className={styles.mobileNavAction} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+        </div>
+      </nav>
+
+      {/* Hero Section - Mobile Optimized */}
+      <section className={styles.hero} style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
+        <div className={styles.heroBackground}>
+          <div className={styles.gradientOrb} style={{ transform: `translate(${scrollY * 0.02}px, ${scrollY * 0.01}px)` }}></div>
+          <div className={styles.gradientOrb2} style={{ transform: `translate(${scrollY * -0.01}px, ${scrollY * 0.02}px)` }}></div>
+        </div>
+
+        {/* Responsive Music Elements */}
+        <div className={styles.musicElements}>
+          <div className={styles.floatingElement} style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
+            <MusicSticker type="vinyl" className={styles.vinylSticker} />
+          </div>
+          <div className={styles.floatingElement2} style={{ transform: `translateY(${scrollY * -0.08}px)` }}>
+            <MusicSticker type="note1" className={styles.noteSticker} />
+          </div>
+          <div className={styles.floatingElement3} style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
+            <MusicSticker type="waveform" className={styles.waveSticker} />
+          </div>
+          <div className={styles.floatingElement4} style={{ transform: `translateY(${scrollY * -0.04}px)` }}>
+            <MusicSticker type="headphones" className={styles.headphoneSticker} />
+          </div>
+        </div>
+
+        <div className={styles.heroContent}>
+          {/* Live Music Badge - Responsive */}
+          <div className={styles.liveBadge}>
+            <div className={styles.pulseDot}></div>
+            <span className={styles.badgeText}>{featuredTracks[currentTrack]}</span>
+          </div>
+
+          {/* Main Title - Responsive Typography */}
+          <h1 className={styles.heroTitle}>
+            The Future of
+            <br />
+            <span className={styles.gradientText}>Digital Music</span>
+            <br />
+            <span className={styles.titleAccent}>Starts Here</span>
+          </h1>
+
+          {/* Subtitle - Mobile Optimized */}
+          <p className={styles.heroSubtitle}>
+            Experience next-generation music creation with AI-powered tools, 
+            immersive soundscapes, and a global community of creators.
+          </p>
+
+          {/* Action Buttons - Stack on Mobile */}
+          <div className={styles.heroActions}>
+            <Link href="/auth/signup" className={styles.primaryBtn}>
+              <span>Start Creating</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M13 7L18 12L13 17M6 12H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </Link>
+
+            <button 
+              onClick={() => setIsPlaying(!isPlaying)}
+              className={styles.playBtn}
+            >
+              <div className={styles.playIcon}>
+                {isPlaying ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+                    <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                  </svg>
+                )}
+              </div>
+              <span>{isPlaying ? 'Pause' : 'Play'} Demo</span>
+            </button>
+          </div>
+
+          {/* Audio Visualizer - Responsive */}
+          {mounted && (
+            <div className={styles.audioVisualizer}>
+              {[...Array(12)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className={styles.visualizerBar}
+                  style={{ 
+                    animationDelay: `${i * 0.1}s`,
+                    height: isPlaying ? `${Math.random() * 40 + 10}px` : '8px'
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Features Section - Mobile Grid */}
+      <section className={styles.featuresSection}>
+        <div className={styles.sectionHeader}>
+          <div className={styles.sectionBadge}>✨ Premium Features</div>
+          <h2 className={styles.sectionTitle}>Everything You Need to Create</h2>
+          <p className={styles.sectionSubtitle}>
+            Professional-grade tools designed for modern music creators
+          </p>
+        </div>
+
+        <div className={styles.featuresGrid}>
+          <div className={styles.featureCard}>
+            <div className={styles.cardIcon}>🎨</div>
+            <h3>AI Music Generation</h3>
+            <p>Create unique compositions with advanced AI. Generate melodies, harmonies, and complete tracks in seconds.</p>
+            <Link href="/create" className={styles.cardLink}>
+              Try Now →
+            </Link>
+          </div>
+
+          <div className={styles.featureCard}>
+            <div className={styles.cardIcon}>🌊</div>
+            <h3>Immersive Studio</h3>
+            <p>Professional recording studio with spatial audio, real-time effects, and collaborative tools.</p>
+            <Link href="/studio" className={styles.cardLink}>
+              Explore →
+            </Link>
+          </div>
+
+          <div className={styles.featureCard}>
+            <div className={styles.cardIcon}>🚀</div>
+            <h3>Global Distribution</h3>
+            <p>Share your music across all major platforms with one click. Analytics and royalty tracking included.</p>
+            <Link href="/distribute" className={styles.cardLink}>
+              Launch →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section - Responsive Grid */}
+      <section className={styles.statsSection}>
+        <div className={styles.statsGrid}>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>2.5M+</div>
+            <div className={styles.statLabel}>Active Creators</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>50M+</div>
+            <div className={styles.statLabel}>Tracks Created</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>195</div>
+            <div className={styles.statLabel}>Countries</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>99.9%</div>
+            <div className={styles.statLabel}>Uptime</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer - Mobile Friendly */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerBrand}>
+            <div className={styles.brandIcon}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#footerLogoGradient)"/>
                 <defs>
-                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#7877c6" />
                     <stop offset="100%" stopColor="#a855f7" />
                   </linearGradient>
                 </defs>
               </svg>
             </div>
-            <span className={styles.logoText}>FrankFreq</span>
+            <span className={styles.brandText}>FrankFreq</span>
           </div>
-
-          <nav className={styles.mainNav}>
-            <button 
-              className={`${styles.navBtn} ${activeTab === 'discover' ? styles.active : ''}`}
-              onClick={() => setActiveTab('discover')}
-            >
-              🔍 Discover
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeTab === 'library' ? styles.active : ''}`}
-              onClick={() => setActiveTab('library')}
-            >
-              📚 Library
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeTab === 'downloads' ? styles.active : ''}`}
-              onClick={() => setActiveTab('downloads')}
-            >
-              ⬇ Downloads
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeTab === 'social' ? styles.active : ''}`}
-              onClick={() => setActiveTab('social')}
-            >
-              💬 Social
-            </button>
-          </nav>
-
-          <div className={styles.userActions}>
-            <button className={styles.searchBtn}>🔍</button>
-            <Link href="/auth/signin" className={styles.loginBtn}>Login</Link>
-            <Link href="/auth/signup" className={styles.signupBtn}>Join Free</Link>
-          </div>
+          <p className={styles.footerText}>
+            © 2024 FrankFreq. All rights reserved. Making music creation accessible to everyone.
+          </p>
         </div>
-      </header>
-
-      {/* Main Content Area */}
-      <main className={styles.mainContent}>
-        {/* Platform Integration Section */}
-        <section className={styles.platformSection}>
-          <div className={styles.sectionHeader}>
-            <h2>Connected Platforms</h2>
-            <p>Stream music from your favorite platforms</p>
-          </div>
-          
-          <div className={styles.platformGrid}>
-            {platforms.map((platform) => (
-              <StreamingCard 
-                key={platform.name}
-                platform={platform.name} 
-                isConnected={platform.connected}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Featured Content */}
-        <section className={styles.featuredSection}>
-          <div className={styles.contentTabs}>
-            {activeTab === 'discover' && (
-              <div className={styles.discoverContent}>
-                <h2>🎵 Trending Now</h2>
-                <div className={styles.trackGrid}>
-                  {featuredTracks.map((track, index) => (
-                    <div key={index} className={styles.trackCard}>
-                      <div className={styles.trackArtwork}>♪</div>
-                      <div className={styles.trackInfo}>
-                        <h4>{track.title}</h4>
-                        <p>{track.artist}</p>
-                        <span className={styles.genre}>{track.genre}</span>
-                      </div>
-                      <div className={styles.trackActions}>
-                        <button className={styles.playTrack}>▶</button>
-                        <button className={styles.downloadTrack}>⬇</button>
-                        <span className={styles.downloadCount}>{track.downloads}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'library' && (
-              <div className={styles.libraryContent}>
-                <h2>📚 Your Music Library</h2>
-                <div className={styles.libraryStats}>
-                  <div className={styles.statCard}>
-                    <h3>247</h3>
-                    <p>Songs</p>
-                  </div>
-                  <div className={styles.statCard}>
-                    <h3>23</h3>
-                    <p>Playlists</p>
-                  </div>
-                  <div className={styles.statCard}>
-                    <h3>15</h3>
-                    <p>Albums</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'downloads' && (
-              <div className={styles.downloadsContent}>
-                <h2>⬇ Download Manager</h2>
-                <div className={styles.downloadQueue}>
-                  <div className={styles.downloadItem}>
-                    <span>Bass Revolution - ElectroMix</span>
-                    <div className={styles.downloadProgress}>
-                      <div className={styles.progressBar}>
-                        <div className={styles.progress} style={{width: '75%'}}></div>
-                      </div>
-                      <span>75%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'social' && (
-              <div className={styles.socialContent}>
-                <h2>💬 Global Music Community</h2>
-                <div className={styles.chatPreview}>
-                  <div className={styles.activeUsers}>
-                    <h3>🌍 Online Now: 12,847</h3>
-                  </div>
-                  <div className={styles.chatMessages}>
-                    <div className={styles.message}>
-                      <span className={styles.username}>MusicLover23:</span>
-                      <span>Just discovered this amazing track! 🎵</span>
-                    </div>
-                    <div className={styles.message}>
-                      <span className={styles.username}>BeatMaster:</span>
-                      <span>Who's ready for tonight's live DJ set?</span>
-                    </div>
-                  </div>
-                  <Link href="/chat" className={styles.joinChatBtn}>Join Global Chat</Link>
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-      </main>
-
-      {/* Fixed Music Player */}
-      <div className={styles.fixedPlayer}>
-        <MusicPlayer track={currentTrack} />
-      </div>
+      </footer>
     </div>
   );
 };
