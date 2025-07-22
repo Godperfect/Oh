@@ -2,12 +2,49 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import styles from "../styles/Home.module.css";
+
+// Scroll Progress Component
+const ScrollProgress = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className={styles.scrollProgress}>
+      <div 
+        className={styles.scrollProgressBar}
+        style={{ width: `${scrollProgress}%` }}
+      />
+    </div>
+  );
+};
+
+
+import type { NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  
+  const heroRef = useRef<HTMLElement>(null);
+  const featuresRef = useRef<HTMLElement>(null);
+  const statsRef = useRef<HTMLElement>(null);
 
   const featuredTracks = [
     "Electronic Vibes",
@@ -17,10 +54,36 @@ const Home: NextPage = () => {
   ];
 
   useEffect(() => {
+    setMounted(true);
+    
     const interval = setInterval(() => {
       setCurrentTrack((prev) => (prev + 1) % featuredTracks.length);
     }, 3000);
-    return () => clearInterval(interval);
+    
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.animate);
+        }
+      });
+    }, observerOptions);
+
+    // Observe sections after mount
+    const sections = [heroRef.current, featuresRef.current, statsRef.current];
+    sections.forEach(section => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      clearInterval(interval);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -31,6 +94,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <ScrollProgress />
+      
       <main className={styles.main}>
         {/* Navigation */}
         <nav className={styles.navigation}>
@@ -58,7 +123,7 @@ const Home: NextPage = () => {
         </nav>
 
         {/* Hero Section */}
-        <section className={styles.hero}>
+        <section ref={heroRef} className={styles.hero}>
           <div className={styles.musicStickers}>
             {/* Enhanced Floating Music Elements */}
             <svg className={styles.musicNote1} width="40" height="40" viewBox="0 0 24 24" fill="none">
@@ -217,13 +282,13 @@ const Home: NextPage = () => {
 
             {/* Music Visualizer */}
             <div className={styles.visualizer}>
-              {[...Array(12)].map((_, i) => (
+              {mounted && [...Array(12)].map((_, i) => (
                 <div 
                   key={i} 
                   className={styles.visualizerBar}
                   style={{ 
                     animationDelay: `${i * 0.1}s`,
-                    animationDuration: `${1.5 + Math.random() * 1}s`
+                    animationDuration: `${1.5 + (i * 0.1)}s`
                   }}
                 />
               ))}
@@ -232,7 +297,7 @@ const Home: NextPage = () => {
         </section>
 
         {/* Premium Features */}
-        <section className={styles.features}>
+        <section ref={featuresRef} className={styles.features}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionBadge}>
               <span>✨ Premium Features</span>
@@ -307,7 +372,7 @@ const Home: NextPage = () => {
         </section>
 
         {/* Stats Section with Enhanced Design */}
-        <section className={styles.stats}>
+        <section ref={statsRef} className={styles.stats}>
           <div className={styles.statsGrid}>
             <div className={styles.statItem}>
               <div className={styles.statIcon}>👥</div>
