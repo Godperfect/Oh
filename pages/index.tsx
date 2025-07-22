@@ -1,7 +1,8 @@
+
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
 // Premium Music Sticker Component
@@ -83,6 +84,7 @@ const Home: NextPage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const featuredTracks = ["Synthwave Dreams", "Lo-fi Nights", "Ambient Flow", "Electronic Pulse"];
 
@@ -107,10 +109,11 @@ const Home: NextPage = () => {
       <Head>
         <title>FrankFreq - Premium Music Experience</title>
         <meta name="description" content="Create, discover, and share music like never before with AI-powered tools" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Premium Navigation */}
+      {/* Mobile-First Navigation */}
       <nav className={styles.navigation}>
         <div className={styles.navBrand}>
           <div className={styles.brandIcon}>
@@ -127,6 +130,17 @@ const Home: NextPage = () => {
           <span className={styles.brandText}>FrankFreq</span>
         </div>
 
+        {/* Mobile Menu Toggle */}
+        <button 
+          className={styles.mobileMenuToggle}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Desktop Menu */}
         <div className={styles.navMenu}>
           <Link href="/discover" className={styles.navItem}>Discover</Link>
           <Link href="/create" className={styles.navItem}>Create</Link>
@@ -137,54 +151,63 @@ const Home: NextPage = () => {
           <Link href="/auth/signin" className={styles.navSignIn}>Sign In</Link>
           <Link href="/auth/signup" className={styles.navSignUp}>Get Started</Link>
         </div>
+
+        {/* Mobile Menu */}
+        <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          <Link href="/discover" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Discover</Link>
+          <Link href="/create" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Create</Link>
+          <Link href="/community" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Community</Link>
+          <Link href="/auth/signin" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
+          <Link href="/auth/signup" className={styles.mobileNavAction} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+        </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className={styles.hero} style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
+      {/* Hero Section - Mobile Optimized */}
+      <section className={styles.hero} style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
         <div className={styles.heroBackground}>
-          <div className={styles.gradientOrb} style={{ transform: `translate(${scrollY * 0.05}px, ${scrollY * 0.03}px)` }}></div>
-          <div className={styles.gradientOrb2} style={{ transform: `translate(${scrollY * -0.03}px, ${scrollY * 0.05}px)` }}></div>
+          <div className={styles.gradientOrb} style={{ transform: `translate(${scrollY * 0.02}px, ${scrollY * 0.01}px)` }}></div>
+          <div className={styles.gradientOrb2} style={{ transform: `translate(${scrollY * -0.01}px, ${scrollY * 0.02}px)` }}></div>
         </div>
 
-        {/* Premium Floating Music Elements */}
+        {/* Responsive Music Elements */}
         <div className={styles.musicElements}>
-          <div className={styles.floatingElement} style={{ transform: `translateY(${scrollY * 0.2}px)` }}>
+          <div className={styles.floatingElement} style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
             <MusicSticker type="vinyl" className={styles.vinylSticker} />
           </div>
-          <div className={styles.floatingElement2} style={{ transform: `translateY(${scrollY * -0.15}px)` }}>
+          <div className={styles.floatingElement2} style={{ transform: `translateY(${scrollY * -0.08}px)` }}>
             <MusicSticker type="note1" className={styles.noteSticker} />
           </div>
-          <div className={styles.floatingElement3} style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
+          <div className={styles.floatingElement3} style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
             <MusicSticker type="waveform" className={styles.waveSticker} />
           </div>
-          <div className={styles.floatingElement4} style={{ transform: `translateY(${scrollY * -0.08}px)` }}>
+          <div className={styles.floatingElement4} style={{ transform: `translateY(${scrollY * -0.04}px)` }}>
             <MusicSticker type="headphones" className={styles.headphoneSticker} />
           </div>
         </div>
 
         <div className={styles.heroContent}>
-          {/* Live Music Badge */}
+          {/* Live Music Badge - Responsive */}
           <div className={styles.liveBadge}>
             <div className={styles.pulseDot}></div>
-            <span>Now Playing: {featuredTracks[currentTrack]}</span>
+            <span className={styles.badgeText}>{featuredTracks[currentTrack]}</span>
           </div>
 
-          {/* Main Title */}
+          {/* Main Title - Responsive Typography */}
           <h1 className={styles.heroTitle}>
             The Future of
             <br />
             <span className={styles.gradientText}>Digital Music</span>
             <br />
-            Starts Here
+            <span className={styles.titleAccent}>Starts Here</span>
           </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle - Mobile Optimized */}
           <p className={styles.heroSubtitle}>
             Experience next-generation music creation with AI-powered tools, 
             immersive soundscapes, and a global community of creators.
           </p>
 
-          {/* Action Buttons */}
+          {/* Action Buttons - Stack on Mobile */}
           <div className={styles.heroActions}>
             <Link href="/auth/signup" className={styles.primaryBtn}>
               <span>Start Creating</span>
@@ -199,12 +222,12 @@ const Home: NextPage = () => {
             >
               <div className={styles.playIcon}>
                 {isPlaying ? (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
                     <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
                   </svg>
                 ) : (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
                   </svg>
                 )}
@@ -213,15 +236,15 @@ const Home: NextPage = () => {
             </button>
           </div>
 
-          {/* Audio Visualizer */}
+          {/* Audio Visualizer - Responsive */}
           {mounted && (
             <div className={styles.audioVisualizer}>
-              {[...Array(8)].map((_, i) => (
+              {[...Array(12)].map((_, i) => (
                 <div 
                   key={i} 
                   className={styles.visualizerBar}
                   style={{ 
-                    animationDelay: `${i * 0.15}s`,
+                    animationDelay: `${i * 0.1}s`,
                     height: isPlaying ? `${Math.random() * 40 + 10}px` : '8px'
                   }}
                 />
@@ -231,7 +254,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      {/* Premium Features Grid */}
+      {/* Features Section - Mobile Grid */}
       <section className={styles.featuresSection}>
         <div className={styles.sectionHeader}>
           <div className={styles.sectionBadge}>✨ Premium Features</div>
@@ -271,7 +294,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - Responsive Grid */}
       <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
           <div className={styles.statItem}>
@@ -292,6 +315,29 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer - Mobile Friendly */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerBrand}>
+            <div className={styles.brandIcon}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#footerLogoGradient)"/>
+                <defs>
+                  <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#7877c6" />
+                    <stop offset="100%" stopColor="#a855f7" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span className={styles.brandText}>FrankFreq</span>
+          </div>
+          <p className={styles.footerText}>
+            © 2024 FrankFreq. All rights reserved. Making music creation accessible to everyone.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
