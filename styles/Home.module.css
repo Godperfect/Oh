@@ -875,11 +875,6 @@
   transform: translateZ(0);
 }
 
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Enhanced sticker animations with scroll trigger */
 .musicStickers {
   transition: transform 0.3s ease-out;
