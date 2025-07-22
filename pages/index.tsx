@@ -142,9 +142,9 @@ const Home: NextPage = () => {
 
         {/* Desktop Menu */}
         <div className={styles.navMenu}>
-          <Link href="/discover" className={styles.navItem}>Discover</Link>
-          <Link href="/create" className={styles.navItem}>Create</Link>
-          <Link href="/community" className={styles.navItem}>Community</Link>
+          <Link href="/auth/signin" className={styles.navItem}>Discover</Link>
+          <Link href="/auth/signup" className={styles.navItem}>Create</Link>
+          <Link href="/auth/signin" className={styles.navItem}>Community</Link>
         </div>
 
         <div className={styles.navActions}>
@@ -154,9 +154,9 @@ const Home: NextPage = () => {
 
         {/* Mobile Menu */}
         <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
-          <Link href="/discover" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Discover</Link>
-          <Link href="/create" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Create</Link>
-          <Link href="/community" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Community</Link>
+          <Link href="/auth/signin" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Discover</Link>
+          <Link href="/auth/signup" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Create</Link>
+          <Link href="/auth/signin" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Community</Link>
           <Link href="/auth/signin" className={styles.mobileNavItem} onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
           <Link href="/auth/signup" className={styles.mobileNavAction} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
         </div>
@@ -259,7 +259,7 @@ const Home: NextPage = () => {
             <div className={styles.cardIcon}>🎧</div>
             <h3>Music Discovery</h3>
             <p>Discover and listen to millions of tracks from artists worldwide. Stream your favorite music and find new sounds.</p>
-            <Link href="/discover" className={styles.cardLink}>
+            <Link href="/auth/signup" className={styles.cardLink}>
               Listen Now →
             </Link>
           </div>
@@ -268,7 +268,7 @@ const Home: NextPage = () => {
             <div className={styles.cardIcon}>🎙️</div>
             <h3>Podcast Hub</h3>
             <p>Listen to the latest news podcasts, music discussions, and exclusive interviews with artists.</p>
-            <Link href="/podcasts" className={styles.cardLink}>
+            <Link href="/auth/signin" className={styles.cardLink}>
               Listen →
             </Link>
           </div>
@@ -277,7 +277,7 @@ const Home: NextPage = () => {
             <div className={styles.cardIcon}>💬</div>
             <h3>Music Community</h3>
             <p>Connect with fellow music lovers, share playlists, and discuss your favorite tracks in our messaging platform.</p>
-            <Link href="/community" className={styles.cardLink}>
+            <Link href="/auth/signin" className={styles.cardLink}>
               Join →
             </Link>
           </div>
