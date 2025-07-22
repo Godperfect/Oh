@@ -216,7 +216,7 @@ const Home: NextPage = () => {
               </svg>
             </Link>
 
-            <Link href="/auth/signup" className={styles.playBtn}>
+            <Link href="/auth/signin" className={styles.playBtn}>
               <div className={styles.playIcon}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
