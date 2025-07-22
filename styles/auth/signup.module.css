@@ -539,10 +539,11 @@
 .pictureUploadSection {
   position: relative;
   margin: 2rem 0;
+  padding-bottom: 80px;
 }
 
 .coverPictureContainer {
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   position: relative;
 }
 
@@ -591,11 +592,11 @@
 .profilePictureContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
   position: absolute;
-  bottom: -30px;
+  bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
 }
 
 .profilePictureLabel {
@@ -866,7 +867,11 @@
   }
 
   .profilePictureContainer {
-    bottom: -25px;
+    bottom: -50px;
+  }
+  
+  .pictureUploadSection {
+    padding-bottom: 60px;
   }
 
   .coverPlaceholder span {
