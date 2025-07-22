@@ -13,6 +13,8 @@ const SignIn: NextPage = () => {
     e.preventDefault();
     // Handle sign-in logic here
     console.log("Sign in:", { email, password });
+    // Redirect to dashboard after successful sign in
+    window.location.href = "/dashboard";
   };
 
   return (

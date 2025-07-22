@@ -78,6 +78,8 @@ const SignUp: NextPage = () => {
     setTimeout(() => {
       console.log("Account created:", formData);
       setIsProcessing(false);
+      // Redirect to dashboard after successful signup
+      window.location.href = "/dashboard";
     }, 2000);
   };
 
