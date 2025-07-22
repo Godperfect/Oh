@@ -46,6 +46,16 @@ const Home: NextPage = () => {
             <h2>Deploy &rarr;</h2>
             <p>After you are happy with this app, deploy it on Replit!</p>
           </a>
+
+          <a href="/auth/signin" className={styles.card}>
+            <h2>Sign In &rarr;</h2>
+            <p>Access your account with our sleek authentication design.</p>
+          </a>
+
+          <a href="/auth/signup" className={styles.card}>
+            <h2>Sign Up &rarr;</h2>
+            <p>Create a new account to get started with our platform.</p>
+          </a>
         </div>
       </main>
     </div>
