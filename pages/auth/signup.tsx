@@ -7,8 +7,11 @@ import styles from "../../styles/auth/signup.module.css";
 
 const SignUp: NextPage = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
     email: "",
+    otp: "",
     password: "",
     confirmPassword: "",
     agreeToTerms: false
@@ -16,6 +19,7 @@ const SignUp: NextPage = () => {
 
   const [step, setStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -25,8 +29,19 @@ const SignUp: NextPage = () => {
     }));
   };
 
-  const handleNext = () => {
-    if (step < 3) {
+  const handleNext = async () => {
+    if (step === 3 && !otpSent) {
+      // Send OTP when moving to step 3
+      setIsProcessing(true);
+      // Simulate OTP sending
+      setTimeout(() => {
+        setOtpSent(true);
+        setIsProcessing(false);
+      }, 1500);
+      return;
+    }
+    
+    if (step < 4) {
       setStep(step + 1);
     }
   };
@@ -35,6 +50,15 @@ const SignUp: NextPage = () => {
     if (step > 1) {
       setStep(step - 1);
     }
+  };
+
+  const sendOTP = async () => {
+    setIsProcessing(true);
+    // Simulate OTP sending
+    setTimeout(() => {
+      setOtpSent(true);
+      setIsProcessing(false);
+    }, 1500);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -55,35 +79,49 @@ const SignUp: NextPage = () => {
           <div className={styles.stepContent}>
             <div className={styles.stepHeader}>
               <h2 className={styles.stepTitle}>Personal Information</h2>
-              <p className={styles.stepDescription}>Let's start with your basic details</p>
+              <p className={styles.stepDescription}>Let's start with your name details</p>
             </div>
             <div className={styles.inputGroup}>
-              <label htmlFor="name" className={styles.label}>
-                Full Name
+              <label htmlFor="firstName" className={styles.label}>
+                First Name
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder="Enter your full name"
+                placeholder="Enter your first name"
                 required
               />
             </div>
             <div className={styles.inputGroup}>
-              <label htmlFor="email" className={styles.label}>
-                Email Address
+              <label htmlFor="middleName" className={styles.label}>
+                Middle Name (Optional)
               </label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                id="middleName"
+                name="middleName"
+                value={formData.middleName}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder="Enter your email"
+                placeholder="Enter your middle name"
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label htmlFor="lastName" className={styles.label}>
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="Enter your last name"
                 required
               />
             </div>
@@ -134,9 +172,63 @@ const SignUp: NextPage = () => {
         return (
           <div className={styles.stepContent}>
             <div className={styles.stepHeader}>
-              <h2 className={styles.stepTitle}>Final Step</h2>
-              <p className={styles.stepDescription}>Complete your account creation</p>
+              <h2 className={styles.stepTitle}>Email Verification</h2>
+              <p className={styles.stepDescription}>Enter your email address for verification</p>
             </div>
+            <div className={styles.inputGroup}>
+              <label htmlFor="email" className={styles.label}>
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+            {otpSent && (
+              <div className={styles.otpSentMessage}>
+                <p>✓ OTP sent to your email address</p>
+              </div>
+            )}
+          </div>
+        );
+      
+      case 4:
+        return (
+          <div className={styles.stepContent}>
+            <div className={styles.stepHeader}>
+              <h2 className={styles.stepTitle}>Verify OTP</h2>
+              <p className={styles.stepDescription}>Enter the verification code sent to {formData.email}</p>
+            </div>
+            <div className={styles.inputGroup}>
+              <label htmlFor="otp" className={styles.label}>
+                Verification Code
+              </label>
+              <input
+                type="text"
+                id="otp"
+                name="otp"
+                value={formData.otp}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="Enter 6-digit code"
+                maxLength={6}
+                required
+              />
+            </div>
+            <button 
+              type="button" 
+              onClick={sendOTP}
+              className={styles.resendBtn}
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Sending...' : 'Resend OTP'}
+            </button>
             <div className={styles.options}>
               <label className={styles.checkbox}>
                 <input 
@@ -159,7 +251,7 @@ const SignUp: NextPage = () => {
             </div>
             <div className={styles.summaryCard}>
               <h3>Account Summary</h3>
-              <p><strong>Name:</strong> {formData.name}</p>
+              <p><strong>Name:</strong> {formData.firstName} {formData.middleName} {formData.lastName}</p>
               <p><strong>Email:</strong> {formData.email}</p>
             </div>
           </div>
@@ -193,11 +285,11 @@ const SignUp: NextPage = () => {
             <div className={styles.progressTrack}>
               <div 
                 className={styles.progressFill} 
-                style={{ width: `${(step / 3) * 100}%` }}
+                style={{ width: `${(step / 4) * 100}%` }}
               ></div>
             </div>
             <div className={styles.stepIndicators}>
-              {[1, 2, 3].map((stepNumber) => (
+              {[1, 2, 3, 4].map((stepNumber) => (
                 <div 
                   key={stepNumber}
                   className={`${styles.stepIndicator} ${
@@ -224,23 +316,36 @@ const SignUp: NextPage = () => {
                 </button>
               )}
               
-              {step < 3 ? (
+              {step < 4 ? (
                 <button 
                   type="button" 
                   onClick={handleNext}
                   className={styles.nextBtn}
                   disabled={
-                    (step === 1 && (!formData.name || !formData.email)) ||
-                    (step === 2 && (!formData.password || !formData.confirmPassword))
+                    (step === 1 && (!formData.firstName || !formData.lastName)) ||
+                    (step === 2 && (!formData.password || !formData.confirmPassword || formData.password !== formData.confirmPassword)) ||
+                    (step === 3 && (!formData.email || isProcessing)) ||
+                    isProcessing
                   }
                 >
-                  Next
+                  {step === 3 && !otpSent ? (
+                    isProcessing ? (
+                      <span className={styles.processing}>
+                        <span className={styles.spinner}></span>
+                        Sending OTP...
+                      </span>
+                    ) : (
+                      'Send OTP'
+                    )
+                  ) : (
+                    'Next'
+                  )}
                 </button>
               ) : (
                 <button 
                   type="submit" 
                   className={styles.submitBtn}
-                  disabled={!formData.agreeToTerms || isProcessing}
+                  disabled={!formData.agreeToTerms || !formData.otp || formData.otp.length !== 6 || isProcessing}
                 >
                   {isProcessing ? (
                     <span className={styles.processing}>
