@@ -14,7 +14,9 @@ const SignUp: NextPage = () => {
     otp: "",
     password: "",
     confirmPassword: "",
-    agreeToTerms: false
+    agreeToTerms: false,
+    profilePicture: null as File | null,
+    coverPicture: null as File | null
   });
 
   const [step, setStep] = useState(1);
@@ -26,6 +28,14 @@ const SignUp: NextPage = () => {
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: string) => {
+    const file = e.target.files?.[0] || null;
+    setFormData(prev => ({
+      ...prev,
+      [fieldName]: file
     }));
   };
 
@@ -41,7 +51,7 @@ const SignUp: NextPage = () => {
       return;
     }
     
-    if (step < 4) {
+    if (step < 5) {
       setStep(step + 1);
     }
   };
@@ -229,6 +239,73 @@ const SignUp: NextPage = () => {
             >
               {isProcessing ? 'Sending...' : 'Resend OTP'}
             </button>
+          </div>
+        );
+
+      case 5:
+        return (
+          <div className={styles.stepContent}>
+            <div className={styles.stepHeader}>
+              <h2 className={styles.stepTitle}>Personalize Your Profile</h2>
+              <p className={styles.stepDescription}>Upload profile and cover pictures to make your profile unique</p>
+            </div>
+            
+            <div className={styles.pictureUploadSection}>
+              <div className={styles.coverPictureContainer}>
+                <label className={styles.coverPictureLabel}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleFileChange(e, 'coverPicture')}
+                    className={styles.hiddenInput}
+                  />
+                  <div className={styles.coverPicturePreview}>
+                    {formData.coverPicture ? (
+                      <img 
+                        src={URL.createObjectURL(formData.coverPicture)} 
+                        alt="Cover preview" 
+                        className={styles.coverImage}
+                      />
+                    ) : (
+                      <div className={styles.coverPlaceholder}>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                          <path d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z" fill="rgba(255,255,255,0.5)"/>
+                        </svg>
+                        <span>Click to upload cover picture</span>
+                      </div>
+                    )}
+                  </div>
+                </label>
+              </div>
+
+              <div className={styles.profilePictureContainer}>
+                <label className={styles.profilePictureLabel}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleFileChange(e, 'profilePicture')}
+                    className={styles.hiddenInput}
+                  />
+                  <div className={styles.profilePicturePreview}>
+                    {formData.profilePicture ? (
+                      <img 
+                        src={URL.createObjectURL(formData.profilePicture)} 
+                        alt="Profile preview" 
+                        className={styles.profileImage}
+                      />
+                    ) : (
+                      <div className={styles.profilePlaceholder}>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="rgba(255,255,255,0.6)"/>
+                        </svg>
+                        <span>Upload Profile</span>
+                      </div>
+                    )}
+                  </div>
+                </label>
+              </div>
+            </div>
+
             <div className={styles.options}>
               <label className={styles.checkbox}>
                 <input 
@@ -249,10 +326,13 @@ const SignUp: NextPage = () => {
                 </Link>
               </label>
             </div>
+
             <div className={styles.summaryCard}>
               <h3>Account Summary</h3>
               <p><strong>Name:</strong> {formData.firstName} {formData.middleName} {formData.lastName}</p>
               <p><strong>Email:</strong> {formData.email}</p>
+              <p><strong>Profile Picture:</strong> {formData.profilePicture ? '✓ Uploaded' : 'Not uploaded'}</p>
+              <p><strong>Cover Picture:</strong> {formData.coverPicture ? '✓ Uploaded' : 'Not uploaded'}</p>
             </div>
           </div>
         );
@@ -285,11 +365,11 @@ const SignUp: NextPage = () => {
             <div className={styles.progressTrack}>
               <div 
                 className={styles.progressFill} 
-                style={{ width: `${(step / 4) * 100}%` }}
+                style={{ width: `${(step / 5) * 100}%` }}
               ></div>
             </div>
             <div className={styles.stepIndicators}>
-              {[1, 2, 3, 4].map((stepNumber) => (
+              {[1, 2, 3, 4, 5].map((stepNumber) => (
                 <div 
                   key={stepNumber}
                   className={`${styles.stepIndicator} ${
@@ -347,7 +427,7 @@ const SignUp: NextPage = () => {
                 </button>
               )}
               
-              {step < 4 ? (
+              {step < 5 ? (
                 <button 
                   type="button" 
                   onClick={handleNext}
@@ -356,6 +436,7 @@ const SignUp: NextPage = () => {
                     (step === 1 && (!formData.firstName || !formData.lastName)) ||
                     (step === 2 && (!formData.password || !formData.confirmPassword || formData.password !== formData.confirmPassword)) ||
                     (step === 3 && (!formData.email || isProcessing)) ||
+                    (step === 4 && (!formData.otp || formData.otp.length !== 6)) ||
                     isProcessing
                   }
                 >
@@ -376,7 +457,7 @@ const SignUp: NextPage = () => {
                 <button 
                   type="submit" 
                   className={styles.submitBtn}
-                  disabled={!formData.agreeToTerms || !formData.otp || formData.otp.length !== 6 || isProcessing}
+                  disabled={!formData.agreeToTerms || isProcessing}
                 >
                   {isProcessing ? (
                     <span className={styles.processing}>
