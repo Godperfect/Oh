@@ -194,23 +194,23 @@ const Home: NextPage = () => {
 
           {/* Main Title - Responsive Typography */}
           <h1 className={styles.heroTitle}>
-            The Future of
+            Your Gateway to
             <br />
-            <span className={styles.gradientText}>Digital Music</span>
+            <span className={styles.gradientText}>Music Discovery</span>
             <br />
-            <span className={styles.titleAccent}>Starts Here</span>
+            <span className={styles.titleAccent}>& Community</span>
           </h1>
 
           {/* Subtitle - Mobile Optimized */}
           <p className={styles.heroSubtitle}>
-            Experience next-generation music creation with AI-powered tools, 
-            immersive soundscapes, and a global community of creators.
+            Discover new music, listen to the latest podcasts, and connect with 
+            a global community of music lovers and enthusiasts.
           </p>
 
           {/* Action Buttons - Stack on Mobile */}
           <div className={styles.heroActions}>
             <Link href="/auth/signup" className={styles.primaryBtn}>
-              <span>Start Creating</span>
+              <span>Start Listening</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M13 7L18 12L13 17M6 12H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               </svg>
@@ -266,29 +266,29 @@ const Home: NextPage = () => {
 
         <div className={styles.featuresGrid}>
           <div className={styles.featureCard}>
-            <div className={styles.cardIcon}>🎨</div>
-            <h3>AI Music Generation</h3>
-            <p>Create unique compositions with advanced AI. Generate melodies, harmonies, and complete tracks in seconds.</p>
-            <Link href="/create" className={styles.cardLink}>
-              Try Now →
+            <div className={styles.cardIcon}>🎧</div>
+            <h3>Music Discovery</h3>
+            <p>Discover and listen to millions of tracks from artists worldwide. Stream your favorite music and find new sounds.</p>
+            <Link href="/discover" className={styles.cardLink}>
+              Listen Now →
             </Link>
           </div>
 
           <div className={styles.featureCard}>
-            <div className={styles.cardIcon}>🌊</div>
-            <h3>Immersive Studio</h3>
-            <p>Professional recording studio with spatial audio, real-time effects, and collaborative tools.</p>
-            <Link href="/studio" className={styles.cardLink}>
-              Explore →
+            <div className={styles.cardIcon}>🎙️</div>
+            <h3>Podcast Hub</h3>
+            <p>Listen to the latest news podcasts, music discussions, and exclusive interviews with artists.</p>
+            <Link href="/podcasts" className={styles.cardLink}>
+              Listen →
             </Link>
           </div>
 
           <div className={styles.featureCard}>
-            <div className={styles.cardIcon}>🚀</div>
-            <h3>Global Distribution</h3>
-            <p>Share your music across all major platforms with one click. Analytics and royalty tracking included.</p>
-            <Link href="/distribute" className={styles.cardLink}>
-              Launch →
+            <div className={styles.cardIcon}>💬</div>
+            <h3>Music Community</h3>
+            <p>Connect with fellow music lovers, share playlists, and discuss your favorite tracks in our messaging platform.</p>
+            <Link href="/community" className={styles.cardLink}>
+              Join →
             </Link>
           </div>
         </div>
