@@ -360,8 +360,12 @@ const SignUp: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Join FrankFreq - Music Platform</title>
-        <meta name="description" content="Join FrankFreq - Listen, Download, Discover Music" />
+        <title>Signup - FrankFreq</title>
+        <meta name="description" content="Join FrankFreq and start your musical journey" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="Signup - FrankFreq" />
+        <meta property="og:description" content="Join FrankFreq and start your musical journey" />
+        <meta name="twitter:title" content="Signup - FrankFreq" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

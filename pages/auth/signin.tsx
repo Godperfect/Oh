@@ -1,4 +1,3 @@
-
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -12,14 +11,14 @@ const SignIn: NextPage = () => {
     otp: "",
     rememberMe: false
   });
-  
+
   const [step, setStep] = useState(1); // 1: credentials, 2: OTP verification
   const [isProcessing, setIsProcessing] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    
+
     // For OTP field, only allow numeric characters
     if (name === 'otp') {
       const numericValue = value.replace(/[^0-9]/g, '');
@@ -29,7 +28,7 @@ const SignIn: NextPage = () => {
       }));
       return;
     }
-    
+
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
@@ -39,7 +38,7 @@ const SignIn: NextPage = () => {
   const handleCredentialsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
-    
+
     // Simulate credential validation and OTP sending
     setTimeout(() => {
       setOtpSent(true);
@@ -51,7 +50,7 @@ const SignIn: NextPage = () => {
   const handleOtpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
-    
+
     // Simulate OTP verification
     setTimeout(() => {
       console.log("Sign in successful:", formData);
@@ -212,8 +211,12 @@ const SignIn: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Sign In - FrankFreq</title>
-        <meta name="description" content="Sign in to FrankFreq - Your Music Platform" />
+        <title>Signin - FrankFreq</title>
+        <meta name="description" content="Sign in to your FrankFreq account" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="Signin - FrankFreq" />
+        <meta property="og:description" content="Sign in to your FrankFreq account" />
+        <meta name="twitter:title" content="Signin - FrankFreq" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
