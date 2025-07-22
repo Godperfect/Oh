@@ -40,12 +40,13 @@ const SignUp: NextPage = () => {
 
   const handleNext = async () => {
     if (step === 3 && !otpSent) {
-      // Send OTP when moving to step 3
+      // Send OTP and automatically proceed to next step
       setIsProcessing(true);
       // Simulate OTP sending
       setTimeout(() => {
         setOtpSent(true);
         setIsProcessing(false);
+        setStep(step + 1); // Automatically go to step 4
       }, 1500);
       return;
     }
