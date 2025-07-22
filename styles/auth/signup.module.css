@@ -827,95 +827,186 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 0.75rem;
+    padding: 0.5rem;
     padding-top: 1rem;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .main {
+    width: 100%;
+    max-width: none;
   }
 
   .authForm {
     padding: 1rem 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
 
   .title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 1.2;
+    margin-bottom: 0.5rem;
   }
 
   .subtitle {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-bottom: 1.5rem;
     line-height: 1.4;
+    padding: 0 0.5rem;
   }
 
   .aiIndicator {
     padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .stepContent {
-    min-height: 220px;
+    min-height: 200px;
+    padding: 0 0.5rem;
   }
 
   .coverPicturePreview {
-    height: 140px;
+    height: 120px;
   }
 
   .profilePicturePreview {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-width: 3px;
   }
 
   .profilePictureContainer {
-    bottom: -50px;
+    bottom: -40px;
   }
   
   .pictureUploadSection {
-    padding-bottom: 60px;
+    padding-bottom: 50px;
   }
 
   .coverPlaceholder span {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 0 0.5rem;
   }
 
   .profilePlaceholder span {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
   .stepTitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
   }
 
   .stepDescription {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
   }
 
   .stepHeader {
-    margin-bottom: 1.5rem;
-  }
-
-  .inputGroup {
     margin-bottom: 1.25rem;
   }
 
+  .inputGroup {
+    margin-bottom: 1rem;
+  }
+
   .input {
-    padding: 1rem 0.4rem;
+    padding: 0.9rem 0.5rem;
     font-size: 0.9rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .input:focus {
+    border-color: #7877c6;
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .label {
     font-size: 0.8rem;
+    margin-bottom: 0.25rem;
   }
 
   .navigationButtons {
     flex-direction: column;
     gap: 0.75rem;
-    margin: 1.25rem 0 0.75rem 0;
+    margin: 1rem 0;
+    padding: 0 0.5rem;
   }
 
   .prevBtn, .nextBtn, .submitBtn {
     padding: 1rem 1.25rem;
     font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .progressBar {
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .progressTrack {
+    height: 6px;
+  }
+
+  .stepIndicator {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .checkbox {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .summaryCard {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+  }
+
+  .summaryCard h3 {
+    font-size: 0.95rem;
+  }
+
+  .summaryCard p {
+    font-size: 0.8rem;
+    margin: 0.25rem 0;
+  }
+
+  .switchAuth {
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    text-align: center;
+  }
+
+  .otpSentMessage {
+    margin: 1rem 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .resendBtn {
+    margin: 0 0.5rem 1rem 0.5rem;
+    width: calc(100% - 1rem);
+  }
+
+  .form {
+    width: 100%;
+  }
   }
 
   .progressBar {
