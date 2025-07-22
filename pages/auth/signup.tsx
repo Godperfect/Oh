@@ -418,16 +418,6 @@ const SignUp: NextPage = () => {
             {renderStep()}
 
             <div className={styles.navigationButtons}>
-              {step > 1 && (
-                <button 
-                  type="button" 
-                  onClick={handlePrevious}
-                  className={styles.prevBtn}
-                >
-                  Previous
-                </button>
-              )}
-
               {step < 5 ? (
                 <button 
                   type="button" 
@@ -468,6 +458,16 @@ const SignUp: NextPage = () => {
                   ) : (
                     'Create Account'
                   )}
+                </button>
+              )}
+
+              {step > 1 && (
+                <button 
+                  type="button" 
+                  onClick={handlePrevious}
+                  className={styles.prevBtn}
+                >
+                  Previous
                 </button>
               )}
             </div>
