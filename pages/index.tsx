@@ -210,7 +210,7 @@ const Home: NextPage = () => {
           {/* Action Buttons - Stack on Mobile */}
           <div className={styles.heroActions}>
             <Link href="/auth/signup" className={styles.primaryBtn}>
-              <span>Start Listening</span>
+              <span>Sign Up</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M13 7L18 12L13 17M6 12H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               </svg>
@@ -222,7 +222,7 @@ const Home: NextPage = () => {
                   <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
                 </svg>
               </div>
-              <span>Listen Now</span>
+              <span>Sign In</span>
             </Link>
           </div>
 
