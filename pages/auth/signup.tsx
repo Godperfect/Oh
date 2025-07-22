@@ -391,13 +391,7 @@ const SignUp: NextPage = () => {
             </div>
           </form>
 
-          <div className={styles.divider}>
-            <span>or</span>
-          </div>
-
-          <button className={styles.googleBtn}>
-            <span>Continue with Google</span>
-          </button>
+          
 
           <p className={styles.switchAuth}>
             Already part of FrankFreq?{" "}

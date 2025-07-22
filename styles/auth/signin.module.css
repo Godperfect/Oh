@@ -223,9 +223,57 @@
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 1200px) {
+  .container {
+    padding: 1.5rem;
+  }
+  
+  .main {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
   .container {
     padding: 1rem;
+    min-height: 100vh;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+  
+  .main {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .authForm {
+    padding: 1.5rem 0;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .input {
+    padding: 1.2rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .submitBtn {
+    padding: 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+    padding-top: 1.5rem;
   }
   
   .authForm {
@@ -233,21 +281,90 @@
   }
   
   .title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    line-height: 1.2;
   }
   
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 2rem;
+    line-height: 1.4;
+  }
+  
+  .form {
+    gap: 1.5rem;
+  }
+  
+  .input {
+    padding: 1rem 0.875rem;
+    font-size: 0.95rem;
   }
   
   .options {
     gap: 0.75rem;
+    margin: 1rem 0 1.5rem 0;
   }
   
   .forgotPassword {
     text-align: left;
     margin-top: 0;
+    font-size: 0.8rem;
+  }
+  
+  .checkbox {
+    font-size: 0.8rem;
+  }
+  
+  .submitBtn {
+    padding: 1.1rem;
+    font-size: 0.95rem;
+    margin: 0.75rem 0;
+  }
+  
+  .switchAuth {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0.5rem;
+    padding-top: 1rem;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .input {
+    padding: 0.875rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .submitBtn {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Landscape orientation for tablets */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .container {
+    padding: 1rem 2rem;
+    align-items: center;
+  }
+  
+  .main {
+    max-width: 450px;
+  }
+  
+  .authForm {
+    padding: 1.5rem 0;
   }
 }
 

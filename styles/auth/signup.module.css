@@ -534,44 +534,7 @@
   text-decoration: underline;
 }
 
-.divider {
-  display: flex;
-  align-items: center;
-  margin: 2rem 0;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.875rem;
-}
 
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.divider span {
-  padding: 0 1.5rem;
-}
-
-.googleBtn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.googleBtn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
-}
 
 .switchAuth {
   text-align: center;
@@ -581,24 +544,280 @@
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 1200px) {
+  .container {
+    padding: 1.5rem;
+  }
+  
+  .main {
+    max-width: 520px;
+  }
+  
+  .authForm {
+    padding: 2rem 0;
+  }
+}
+
+@media (max-width: 768px) {
   .container {
     padding: 1rem;
+    align-items: flex-start;
+    padding-top: 1.5rem;
+  }
+  
+  .main {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .authForm {
+    padding: 1.5rem 0;
+  }
+  
+  .title {
+    font-size: 2.4rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stepContent {
+    min-height: 280px;
+  }
+  
+  .stepTitle {
+    font-size: 1.3rem;
+  }
+  
+  .stepDescription {
+    font-size: 0.9rem;
+  }
+  
+  .input {
+    padding: 1.1rem 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .navigationButtons {
+    gap: 0.75rem;
+    margin: 1.5rem 0 1rem 0;
+  }
+  
+  .prevBtn, .nextBtn, .submitBtn {
+    padding: 1.1rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .musicStickers svg {
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+    padding-top: 1rem;
   }
 
   .authForm {
-    padding: 2rem 1.5rem;
+    padding: 1rem 0;
   }
 
   .title {
-    font-size: 2.25rem;
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+  
+  .aiIndicator {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
   }
 
   .stepContent {
-    min-height: 250px;
+    min-height: 220px;
+  }
+  
+  .stepTitle {
+    font-size: 1.2rem;
+  }
+  
+  .stepDescription {
+    font-size: 0.85rem;
+  }
+  
+  .stepHeader {
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputGroup {
+    margin-bottom: 1.25rem;
+  }
+  
+  .input {
+    padding: 1rem 0.4rem;
+    font-size: 0.9rem;
+  }
+  
+  .label {
+    font-size: 0.8rem;
   }
 
   .navigationButtons {
     flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.25rem 0 0.75rem 0;
+  }
+  
+  .prevBtn, .nextBtn, .submitBtn {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .progressBar {
+    margin-bottom: 2rem;
+  }
+  
+  .stepIndicator {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .checkbox {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .summaryCard {
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+  }
+  
+  .summaryCard h3 {
+    font-size: 1rem;
+  }
+  
+  .summaryCard p {
+    font-size: 0.8rem;
+  }
+  
+  .switchAuth {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+  
+  .musicStickers svg {
+    opacity: 0.6;
+  }
+  
+  .musicNote1, .musicNote2 {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .vinylRecord {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .headphones {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .waveform, .speaker {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0.5rem;
+    padding-top: 0.75rem;
+  }
+  
+  .title {
+    font-size: 1.7rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .stepContent {
+    min-height: 200px;
+  }
+  
+  .stepTitle {
+    font-size: 1.1rem;
+  }
+  
+  .input {
+    padding: 0.9rem 0.3rem;
+    font-size: 0.85rem;
+  }
+  
+  .prevBtn, .nextBtn, .submitBtn {
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .stepIndicator {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+  
+  .musicStickers svg {
+    display: none;
+  }
+}
+
+/* Landscape orientation for tablets */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .container {
+    padding: 1rem 2rem;
+    align-items: center;
+  }
+  
+  .main {
+    max-width: 500px;
+  }
+  
+  .authForm {
+    padding: 1.5rem 0;
+  }
+  
+  .stepContent {
+    min-height: 250px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1400px) {
+  .container {
+    padding: 3rem;
+  }
+  
+  .main {
+    max-width: 550px;
+  }
+  
+  .authForm {
+    padding: 3rem 0;
   }
 }
