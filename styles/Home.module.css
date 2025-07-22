@@ -40,6 +40,13 @@
 
 .heroContent {
   max-width: 800px;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .badge {
@@ -258,14 +265,188 @@
   letter-spacing: 1px;
 }
 
-/* Animations */
+/* Music Stickers */
+.musicStickers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.musicNote1 {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  animation: floatUpDown 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(120, 119, 198, 0.5));
+}
+
+.musicNote2 {
+  position: absolute;
+  bottom: 25%;
+  left: 8%;
+  animation: floatLeftRight 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4));
+}
+
+.vinylRecord {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  animation: spinSlow 12s linear infinite;
+  filter: drop-shadow(0 0 15px rgba(120, 119, 198, 0.3));
+}
+
+.headphones {
+  position: absolute;
+  top: 60%;
+  right: 15%;
+  animation: pulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.4));
+}
+
+.waveform {
+  position: absolute;
+  bottom: 40%;
+  right: 25%;
+  animation: audioWave 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(120, 119, 198, 0.6));
+}
+
+.speaker {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  animation: beatPulse 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.microphone {
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
+  animation: micBounce 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+}
+
+/* Enhanced Animations */
+@keyframes floatUpDown {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+    opacity: 0.8;
+  }
+  25% { 
+    transform: translateY(-15px) rotate(5deg); 
+    opacity: 1;
+  }
+  50% { 
+    transform: translateY(-25px) rotate(0deg); 
+    opacity: 0.9;
+  }
+  75% { 
+    transform: translateY(-10px) rotate(-3deg); 
+    opacity: 1;
+  }
+}
+
+@keyframes floatLeftRight {
+  0%, 100% { 
+    transform: translateX(0px) rotate(0deg); 
+    opacity: 0.7;
+  }
+  33% { 
+    transform: translateX(12px) rotate(-8deg); 
+    opacity: 1;
+  }
+  66% { 
+    transform: translateX(-8px) rotate(5deg); 
+    opacity: 0.9;
+  }
+}
+
+@keyframes spinSlow {
+  0% { 
+    transform: rotate(0deg) scale(1); 
+    opacity: 0.8;
+  }
+  50% { 
+    opacity: 1;
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% { 
+    transform: rotate(360deg) scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes audioWave {
+  0%, 100% { 
+    transform: scaleY(1) scaleX(1); 
+    opacity: 0.7; 
+  }
+  25% { 
+    transform: scaleY(1.4) scaleX(0.95); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: scaleY(1.8) scaleX(0.9); 
+    opacity: 0.9; 
+  }
+  75% { 
+    transform: scaleY(1.2) scaleX(1.05); 
+    opacity: 1; 
+  }
+}
+
+@keyframes beatPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: brightness(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); 
+  }
+  30% { 
+    transform: scale(1.15); 
+    filter: brightness(1.3) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)); 
+  }
+  60% { 
+    transform: scale(0.95); 
+    filter: brightness(0.9) drop-shadow(0 0 12px rgba(255, 255, 255, 0.4)); 
+  }
+}
+
+@keyframes micBounce {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+    opacity: 0.8;
+  }
+  20% { 
+    transform: translateY(-8px) rotate(2deg); 
+    opacity: 1;
+  }
+  40% { 
+    transform: translateY(-12px) rotate(-1deg); 
+    opacity: 0.9;
+  }
+  60% { 
+    transform: translateY(-6px) rotate(1deg); 
+    opacity: 1;
+  }
+  80% { 
+    transform: translateY(-2px) rotate(0deg); 
+    opacity: 0.9;
+  }
+}
+
 @keyframes pulse {
   0%, 100% { 
-    opacity: 1; 
+    opacity: 0.8; 
     transform: scale(1); 
   }
   50% { 
-    opacity: 0.7; 
+    opacity: 1; 
     transform: scale(1.1); 
   }
 }
@@ -278,6 +459,10 @@
   
   .hero {
     padding: 4rem 0;
+  }
+  
+  .heroContent {
+    padding: 2rem 1.5rem;
   }
   
   .heroButtons {
@@ -304,6 +489,50 @@
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Mobile sticker adjustments */
+  .musicNote1 { 
+    width: 24px; 
+    height: 24px; 
+    top: 10%; 
+    right: 5%; 
+  }
+  .musicNote2 { 
+    width: 20px; 
+    height: 20px; 
+    bottom: 35%; 
+    left: 5%; 
+  }
+  .vinylRecord { 
+    width: 36px; 
+    height: 36px; 
+    top: 25%; 
+    left: 10%; 
+  }
+  .headphones { 
+    width: 28px; 
+    height: 28px; 
+    top: 65%; 
+    right: 10%; 
+  }
+  .waveform { 
+    width: 30px; 
+    height: 30px; 
+    bottom: 45%; 
+    right: 20%; 
+  }
+  .speaker { 
+    width: 26px; 
+    height: 26px; 
+    top: 45%; 
+    left: 3%; 
+  }
+  .microphone { 
+    width: 22px; 
+    height: 22px; 
+    bottom: 20%; 
+    right: 3%; 
+  }
 }
 
 @media (max-width: 480px) {
@@ -314,6 +543,10 @@
   
   .subtitle {
     font-size: 1.1rem;
+  }
+  
+  .heroContent {
+    padding: 1.5rem 1rem;
   }
   
   .card {
@@ -328,4 +561,27 @@
   .statsGrid {
     grid-template-columns: 1fr;
   }
+
+  /* Very small screens - reduce sticker sizes further */
+  .musicNote1, .musicNote2 { 
+    width: 18px; 
+    height: 18px; 
+  }
+  .vinylRecord { 
+    width: 28px; 
+    height: 28px; 
+  }
+  .headphones, .waveform, .speaker { 
+    width: 20px; 
+    height: 20px; 
+  }
+  .microphone { 
+    width: 16px; 
+    height: 16px; 
+  }
+
+  /* Slower animations for smaller screens */
+  .musicNote1 { animation-duration: 6s; }
+  .musicNote2 { animation-duration: 7s; }
+  .vinylRecord { animation-duration: 15s; }
 }
