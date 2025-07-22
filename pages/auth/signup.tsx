@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
-import styles from "../../styles/auth/auth.module.css";
+import styles from "../../styles/auth/signup.css";
 
 const SignUp: NextPage = () => {
   const [name, setName] = useState("");
